@@ -5,7 +5,7 @@ CREATE TABLE customer (
 	id_customer INT AUTO_INCREMENT PRIMARY KEY,
     type_person ENUM('NP', 'LP')
 );
-CREATE TABLE state (
+CREATE TABLE states (
 	id_state INT AUTO_INCREMENT PRIMARY KEY,
     state_uf CHAR(2) NOT NULL
 );
@@ -13,7 +13,7 @@ CREATE TABLE city (
 	id_city INT AUTO_INCREMENT PRIMARY KEY,
     city_name VARCHAR(50) NOT NULL,
     id_state INT,
-    CONSTRAINT fk_state FOREIGN KEY (id_state) REFERENCES state (id_state)
+    CONSTRAINT fk_state FOREIGN KEY (id_state) REFERENCES states (id_state)
 );
 CREATE TABLE natural_person (
 	id_natural_person INT AUTO_INCREMENT PRIMARY KEY,
@@ -88,16 +88,10 @@ CREATE TABLE employee (
     phone VARCHAR(11),
     CONSTRAINT unique_cpf_employee UNIQUE(cpf)
 );
-CREATE TABLE status_service (
-	id_status_service INT AUTO_INCREMENT PRIMARY KEY,
-    name_status_service VARCHAR(20) NOT NULL
-);
 CREATE TABLE service (
 	id_service INT AUTO_INCREMENT PRIMARY KEY,
     name_service VARCHAR(50),
-    value_service DECIMAL(10,2),
-    id_status_service INT,
-    CONSTRAINT fk_service_status FOREIGN KEY (id_status_service) REFERENCES status_service (id_status_service)
+    value_service DECIMAL(10,2)
 );
 CREATE TABLE status_order (
 	id_status_order INT AUTO_INCREMENT PRIMARY KEY,
